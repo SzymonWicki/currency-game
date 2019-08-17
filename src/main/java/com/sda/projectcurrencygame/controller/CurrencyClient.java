@@ -9,16 +9,12 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class CurrencyClient {
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void getCurrencyRates() {
+    public CurrencyModel getCurrencyRates() {
         RestTemplate restTemplate = new RestTemplate();
         final CurrencyModel currencyModel = restTemplate.getForObject("https://api.exchangeratesapi.io/latest?base=PLN", CurrencyModel.class);
-        System.out.println(currencyModel);
 
+        return currencyModel;
     }
-
-
-
 
     @Override
     public String toString() {
